@@ -52,7 +52,6 @@ class App extends Component {
                     placeholder="search for monster"
                     onChange={this.onSearchChange}
                 />
-
                 <CardList monsters={filteredMonsters} />
             </div>
         );
