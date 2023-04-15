@@ -1,30 +1,36 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import "./App.css";
 
 class App extends Component {
     constructor() {
         super();
         this.state = {
-            monsters: [
-                {
-                    name: "mary",
-                    id: "1123123",
-                },
-                {
-                    name: "mary",
-                    id: "11231321323",
-                },
-                {
-                    name: "mary",
-                    id: "11212323123",
-                },
-            ],
+            monsters: [],
         };
+        console.log("calling constructor");
+    }
+
+    componentDidMount() {
+        console.log("component did mount");
+        fetch("https://jsonplaceholder.typicode.com/users")
+            .then((response) => response.json())
+            .then((data) =>
+                this.setState(
+                    () => {
+                        return { monsters: data };
+                    },
+                    () => {
+                        console.log(this.state);
+                    }
+                )
+            );
     }
 
     render() {
+        console.log("rendering app");
         return (
             <div className="App">
+                <input />
                 {this.state.monsters.map((current) => {
                     return (
                         <div key={current.id}>
